@@ -1,53 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirect Page</title>
-    <style>
-        body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            text-align: center;
+    <title>Auto Redirect Page</title>
+    <script>
+        // Function to extract the redirect URL from the query parameter
+        function getRedirectURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('redirect');
         }
-        h1 {
-            font-size: 24px;
+
+        // Function to perform the redirect after 10 seconds
+        function autoRedirect() {
+            const redirectURL = getRedirectURL();
+            if (redirectURL) {
+                setTimeout(function () {
+                    window.location.href = redirectURL;
+                }, 10000); // 10 seconds
+            }
         }
-        #redirect-button {
-            display: none;
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #redirect-button:hover {
-            background-color: #45a049;
-        }
-    </style>
+
+        // Call the autoRedirect function when the page loads
+        window.onload = autoRedirect;
+    </script>
 </head>
 <body>
-    <h1>Click the button below to proceed:</h1>
-    <button id="redirect-button">Proceed</button>
-
-    <script>
-        // Get the redirect URL from the query parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const redirectURL = urlParams.get('redirect');
-        const redirectButton = document.getElementById('redirect-button');
-
-        // Display the button with the URL if provided
-        if (redirectURL) {
-            redirectButton.style.display = 'block';
-            redirectButton.innerText = `Proceed to: ${redirectURL}`;
-        }
-
-        // Redirect when the button is clicked
-        redirectButton.addEventListener('click', function () {
-            if (redirectURL) {
-                window.location.href = redirectURL;
-            }
-        });
-    </script>
+    <h1>Redirecting in 10 seconds...</h1>
+    <p>If you are not redirected, <a href="#" id="redirect-link">click here</a>.</p>
 </body>
 </html>
