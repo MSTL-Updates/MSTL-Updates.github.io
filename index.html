@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beautiful Page</title>
+    <style>
+        body {
+            background-image: url('your-background-image.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #fff;
+        }
+        h1 {
+            animation: fadeIn 2s ease-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        #redirect-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #redirect-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Beautiful Page!</h1>
+    <button id="redirect-button" onclick="redirectToURL()">Redirect in 10 Seconds</button>
+
+    <script>
+        function redirectToURL() {
+            setTimeout(function () {
+                // Replace 'your-destination-url' with the URL you want to redirect to
+                window.location.href = 'https://your-destination-url';
+            }, 10000); // 10 seconds
+        }
+    </script>
+</body>
+</html>
