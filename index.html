@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirect Page</title>
-    <style>
-        body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        h1 {
-            font-size: 24px;
-        }
-        #redirect-button {
-            display: none;
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #redirect-button:hover {
-            background-color: #45a049;
-        }
-    </style>
+<style>
+  #myButton {
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 0 auto;
+  }
+</style>
 </head>
 <body>
-    <h1>Click the button below to proceed:</h1>
-    <button id="redirect-button">Proceed</button>
+  <div id="countdown"></div>
+  <script>
+    var count = 10; // 10 seconds timer
+    var countdownElement = document.getElementById("countdown");
+    
+    function updateCountdown() {
+      countdownElement.innerText = "Button will appear in " + count + " seconds";
+      count--;
 
-    <script>
-        // Get the redirect URL from the query parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const redirectURL = urlParams.get('redirect');
-        const redirectButton = document.getElementById('redirect-button');
-
-        // Display the button with the URL if provided
+      if (count < 0) {
+        clearInterval(timer);
+        countdownElement.style.display = "none";
+        var button = document.getElementById("myButton");
+        button.style.display = "block";
+        
+        // Check if the URL contains the 'redirect' parameter
+        var urlParams = new URLSearchParams(window.location.search);
+        var redirectURL = urlParams.get("redirect");
+        
         if (redirectURL) {
-            redirectButton.style.display = 'block';
-            redirectButton.innerText = `Proceed to: ${redirectURL}`;
+          // Set the button's link to the 'redirect' URL
+          button.setAttribute("href", redirectURL);
+          button.innerText = "Click Me";
         }
+      }
+    }
 
-        // Redirect when the button is clicked
-        redirectButton.addEventListener('click', function () {
-            if (redirectURL) {
-                window.location.href = redirectURL;
-            }
-        });
-    </script>
+    var timer = setInterval(updateCountdown, 1000);
+  </script>
+  <a id="myButton" style="display: none"></a>
 </body>
 </html>
