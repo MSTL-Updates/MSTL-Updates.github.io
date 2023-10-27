@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Auto Redirect Page</title>
-    <script>
-        // Function to extract the redirect URL from the query parameter
-        function getRedirectURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('redirect');
-        }
+    <title>The First Page</title>
+</head>
+<body>
+    <p>Redirecting you in just 20 sec...</p>
 
-        // Function to perform the redirect after 10 seconds
-        function autoRedirect() {
-            const redirectURL = getRedirectURL();
-            if (redirectURL) {
-                setTimeout(function () {
-                    window.location.href = redirectURL;
-                }, 10000); // 10 seconds
+    <script type="text/javascript">
+        // Function to extract the redirect URL from the query parameter
+        function getRedirectUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectParam = urlParams.get("redirect");
+            if (redirectParam) {
+                // Redirect to the URL from the query parameter
+                window.location.href = redirectParam;
+            } else {
+                // Handle the case when the 'redirect' parameter is not present
+                console.error("No 'redirect' parameter found.");
             }
         }
 
-        // Call the autoRedirect function when the page loads
-        window.onload = autoRedirect;
+        // Call the function after a 15-second delay
+        setTimeout(getRedirectUrl, 20000);
     </script>
-</head>
-<body>
-    <h1>Redirecting in 10 seconds...</h1>
-    <p>If you are not redirected, <a href="#" id="redirect-link">click here</a>.</p>
 </body>
 </html>
